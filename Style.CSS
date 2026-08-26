@@ -74,6 +74,7 @@ body {
   border-radius: 4px;
   color: var(--gold-bright);
   font-size: 15px;
+  transition: border-color 0.2s;
 }
 
 #search-input:focus {
@@ -90,42 +91,6 @@ body {
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 12px;
-}
-
-/* Champion grid (populated by script.js) */
-.champion-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  gap: 12px;
-}
-
-/* Compare section (populated by script.js) */
-.compare-section {
-  margin-top: 40px;
-}
-.champion-card {
-  background: var(--navy-panel);
-  border: 1px solid var(--steel);
-  border-radius: 4px;
-  padding: 8px;
-  text-align: center;
-  cursor: pointer;
-  transition: border-color 0.2s;
-}
-
-.champion-card:hover {
-  border-color: var(--hextech-blue);
-}
-
-.champion-card img {
-  width: 100%;
-  border-radius: 4px;
-}
-
-.champion-card p {
-  margin: 6px 0 0;
-  font-size: 12px;
-  color: var(--gold-bright);
 }
 
 .role-btn {
@@ -149,9 +114,49 @@ body {
   color: var(--navy-deep);
   font-weight: 600;
 }
+
+/* Champion grid */
+.champion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 12px;
+}
+
+.champion-card {
+  background: var(--navy-panel);
+  border: 1px solid var(--steel);
+  border-radius: 4px;
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s;
+}
+
+.champion-card:hover {
+  border-color: var(--hextech-blue);
+  transform: translateY(-2px);
+}
+
 .champion-card.selected {
   border-color: var(--gold);
   box-shadow: 0 0 12px rgba(200, 170, 110, 0.4);
+}
+
+.champion-card img {
+  width: 100%;
+  border-radius: 4px;
+  display: block;
+}
+
+.champion-card p {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--gold-bright);
+}
+
+/* Compare section */
+.compare-section {
+  margin-top: 40px;
 }
 
 .compare-hint {
@@ -167,7 +172,8 @@ body {
   gap: 32px;
   padding: 24px;
   background: var(--navy-panel);
-  border-radius: 8px;
+  border-radius: 8px 8px 0 0;
+  border-bottom: 1px solid var(--steel);
 }
 
 .compare-side {
@@ -183,6 +189,7 @@ body {
 .compare-side h3 {
   margin: 8px 0 0;
   font-family: "Beaufort for LOL", serif;
+  font-size: 16px;
 }
 
 .vs {
@@ -190,11 +197,12 @@ body {
   font-size: 24px;
   color: var(--hextech-blue);
 }
+
+/* Stats table */
 .stats-table {
-  margin-top: 16px;
   background: var(--navy-panel);
-  border-radius: 8px;
-  padding: 16px;
+  border-radius: 0 0 8px 8px;
+  padding: 16px 24px;
 }
 
 .stat-row {
@@ -234,4 +242,32 @@ body {
 
 .stat-higher {
   color: var(--hextech-blue);
+}
+
+/* Responsive: mobile */
+@media (max-width: 480px) {
+  .brand {
+    font-size: 24px;
+  }
+
+  .compare-header {
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .compare-side img {
+    width: 70px;
+  }
+
+  .vs {
+    font-size: 18px;
+  }
+
+  .stat-row {
+    gap: 6px;
+  }
+
+  .stat-value {
+    font-size: 13px;
+  }
 }
