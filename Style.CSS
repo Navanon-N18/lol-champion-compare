@@ -149,3 +149,44 @@ body {
   color: var(--navy-deep);
   font-weight: 600;
 }
+.champion-card.selected {
+  border-color: var(--gold);
+  box-shadow: 0 0 12px rgba(200, 170, 110, 0.4);
+}
+
+.compare-hint {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 24px;
+}
+
+.compare-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  padding: 24px;
+  background: var(--navy-panel);
+  border-radius: 8px;
+}
+
+.compare-side {
+  text-align: center;
+}
+
+.compare-side img {
+  width: 100px;
+  border-radius: 8px;
+  border: 2px solid var(--gold);
+}
+
+.compare-side h3 {
+  margin: 8px 0 0;
+  font-family: "Beaufort for LOL", serif;
+}
+
+.vs {
+  font-family: "Beaufort for LOL", serif;
+  font-size: 24px;
+  color: var(--hextech-blue);
+}
