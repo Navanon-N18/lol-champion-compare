@@ -95,6 +95,15 @@ function toggleSelect(champ, card) {
   renderCompare();
 }
 
+const STAT_LABELS = [
+  { key: "hp", label: "HP" },
+  { key: "attackdamage", label: "Attack Damage" },
+  { key: "armor", label: "Armor" },
+  { key: "spellblock", label: "Magic Resist" },
+  { key: "movespeed", label: "Move Speed" },
+  { key: "attackrange", label: "Attack Range" },
+];
+
 function renderCompare() {
   compareSection.innerHTML = "";
 
@@ -105,19 +114,56 @@ function renderCompare() {
 
   const [a, b] = selectedChampions;
 
-  compareSection.innerHTML = `
-    <div class="compare-header">
-      <div class="compare-side">
-        <img src="https://ddragon.leagueoflegends.com/cdn/${VERSION}/img/champion/${a.image.full}" alt="${a.name}">
-        <h3>${a.name}</h3>
-      </div>
-      <span class="vs">VS</span>
-      <div class="compare-side">
-        <img src="https://ddragon.leagueoflegends.com/cdn/${VERSION}/img/champion/${b.image.full}" alt="${b.name}">
-        <h3>${b.name}</h3>
-      </div>
+  const header = document.createElement("div");
+  header.classList.add("compare-header");
+  header.innerHTML = `
+    <div class="compare-side">
+      <img src="https://ddragon.leagueoflegends.com/cdn/${VERSION}/img/champion/${a.image.full}" alt="${a.name}">
+      <h3>${a.name}</h3>
+    </div>
+    <span class="vs">VS</span>
+    <div class="compare-side">
+      <img src="https://ddragon.leagueoflegends.com/cdn/${VERSION}/img/champion/${b.image.full}" alt="${b.name}">
+      <h3>${b.name}</h3>
     </div>
   `;
+
+  const statsTable = document.createElement("div");
+  statsTable.classList.add("stats-table");
+
+  STAT_LABELS.forEach(function (stat) {
+    const valueA = a.stats[stat.key];
+    const valueB = b.stats[stat.key];
+
+    const row = document.createElement("div");
+    row.classList.add("stat-row");
+
+    const cellA = document.createElement("span");
+    cellA.classList.add("stat-value");
+    cellA.textContent = valueA;
+
+    const cellLabel = document.createElement("span");
+    cellLabel.classList.add("stat-label");
+    cellLabel.textContent = stat.label;
+
+    const cellB = document.createElement("span");
+    cellB.classList.add("stat-value");
+    cellB.textContent = valueB;
+
+    if (valueA > valueB) {
+      cellA.classList.add("stat-higher");
+    } else if (valueB > valueA) {
+      cellB.classList.add("stat-higher");
+    }
+
+    row.appendChild(cellA);
+    row.appendChild(cellLabel);
+    row.appendChild(cellB);
+    statsTable.appendChild(row);
+  });
+
+  compareSection.appendChild(header);
+  compareSection.appendChild(statsTable);
 }
 
 function renderChampions(champions) {
