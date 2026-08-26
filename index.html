@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LoL Champion Compare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Beaufort+for+LOL:wght@700&family=Spiegel:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark">◆</span>
+      <span class="brand-name">Champion<span class="accent">Compare</span></span>
+    </div>
+    <p class="tagline">Compare champion stats before you lock in</p>
+  </header>
+
+  <main class="container">
+    <section class="search-section">
+      <input type="text" id="search-input" placeholder="Search champions...">
+      <div class="role-filters" id="role-filters"></div>
+    </section>
+
+    <section id="champion-grid" class="champion-grid">
+      <!-- Champions are rendered here by script.js -->
+    </section>
+
+    <section id="compare-section" class="compare-section">
+      <!-- The 2-champion comparison view is rendered here once selected -->
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
